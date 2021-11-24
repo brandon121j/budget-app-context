@@ -56,8 +56,8 @@ function App() {
     handleSubmit
   }
 
-  const listsContextValue = {}
-  const headerContextValue = {}
+  const listsContextValue = {};
+  const headerContextValue = {};
 
   return (
     <div className="App">
