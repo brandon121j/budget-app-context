@@ -1,23 +1,77 @@
-import logo from './logo.svg';
+import {useState} from 'react';
+import Header from './components/header/Header';
+import Inputs from './components/inputs/Inputs';
+import MainList from './components/lists/MainList';
+import { InputContext, HeaderContext, ListsContext } from './context/context';
 import './App.css';
 
 function App() {
+  const [expense, setExpense] = useState(0);
+  const [income, setIncome] = useState(0);
+  const [amount, setAmount] = useState(0);
+  const [option, setOption] = useState('+');
+  const [description, setDescription] = useState('');
+  const [incomeArray, setIncomeArray] = useState([]);
+  const [expenseList, setExpenseList] = useState([]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (amount === 0) return;
+
+    if (option === '+') {
+      setIncome(income + parseFloat(amount))
+      setIncomeArray([...incomeArray, {description, amount}])
+    } else {
+      setExpense(expense + parseFloat(amount));
+      setExpenseList([...expenseList], {description, amount})
+    }
+    reset()
+  }
+
+  function handleDescription(value) {
+    setDescription(value);
+  }
+
+  function reset() {
+    setAmount(0);
+    setDescription('')
+  }
+
+  function handleOption(value) {
+    setOption(value)
+  }
+
+  function handleAmount(value) {
+    setAmount(value)
+  }
+
+  const inputContextValue = {
+    option,
+    description,
+    amount,
+    handleOption,
+    handleDescription,
+    handleAmount,
+    handleSubmit
+  }
+
+  const listsContextValue = {}
+  const headerContextValue = {}
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HeaderContext.Provider value={headerContextValue}>
+        <Header />
+      </HeaderContext.Provider>
+
+      <InputContext.Provider value={inputContextValue}>
+        <Inputs />
+      </InputContext.Provider>
+
+      <ListsContext.Provider value={listsContextValue}>
+        <MainList />
+      </ListsContext.Provider>
     </div>
   );
 }
