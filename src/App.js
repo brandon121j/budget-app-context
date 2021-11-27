@@ -6,11 +6,11 @@ import { InputContext, HeaderContext, ListsContext } from './context/context';
 import './App.css';
 
 function App() {
-  const [expense, setExpense] = useState(0);
   const [income, setIncome] = useState(0);
-  const [amount, setAmount] = useState(0);
+  const [expense, setExpense] = useState(0);
   const [option, setOption] = useState('+');
   const [description, setDescription] = useState('');
+  const [amount, setAmount] = useState(0);
   const [incomeArray, setIncomeArray] = useState([]);
   const [expenseList, setExpenseList] = useState([]);
 
@@ -21,10 +21,10 @@ function App() {
 
     if (option === '+') {
       setIncome(income + parseFloat(amount))
-      setIncomeArray([...incomeArray, {description, amount}])
+      setIncomeArray([...incomeArray, { description, amount }])
     } else {
       setExpense(expense + parseFloat(amount));
-      setExpenseList([...expenseList], {description, amount})
+      setExpenseList([...expenseList, { description, amount }])
     }
     reset()
   }
@@ -56,7 +56,11 @@ function App() {
     handleSubmit
   }
 
-  const listsContextValue = {};
+  const listsContextValue = {
+    incomeArray,
+    expenseList
+  };
+
   const headerContextValue = {};
 
   return (

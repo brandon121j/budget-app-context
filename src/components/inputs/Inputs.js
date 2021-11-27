@@ -18,7 +18,7 @@ function Inputs() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit()}>
+            <form onSubmit={handleSubmit}>
                 <select value={option} onChange={(e) => handleOption(e.target.value)}>
                     <option value="+">+</option>
                     <option value="-">-</option>
@@ -35,7 +35,7 @@ function Inputs() {
                 value={amount}
                 onChange={(e) => handleAmount(e.target.value)}
                 />
-                <button>Submit</button>
+                <button type='submit'>Submit</button>
             </form>
         </div>
     )
