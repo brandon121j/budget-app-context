@@ -35,7 +35,7 @@ function Inputs() {
                 value={amount}
                 onChange={(e) => handleAmount(e.target.value)}
                 />
-                <button type='submit'>Submit</button>
+                <button>Submit</button>
             </form>
         </div>
     )

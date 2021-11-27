@@ -8,10 +8,12 @@ function IncomeList() {
             <ul>
                 {
                     incomeArray.map((income, index) => {
+                        return (
                         <li key={index}>
                             <span>{income.description}</span>
                             <span>{income.amount}</span>
                         </li>
+                        )
                     })
                 }
             </ul>

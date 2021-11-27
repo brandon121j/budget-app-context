@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import ExpenseList from './ExpenseList';
+import IncomeList from './IncomeList';
 
 function MainList() {
     return (
         <div>
-            Main List
+            <IncomeList/>
+            <ExpenseList/>
         </div>
     )
 }

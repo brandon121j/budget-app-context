@@ -1,15 +1,19 @@
-import React from 'react'
-
+import React, { useContext } from 'react';
+import { HeaderContext } from '../../context/context';
 function Header() {
-    return (
-        <div>
-            <h1>Current Budget</h1>
-            <p>Total: 10000</p>
-            <br />
-            <p>Income: 5000</p>
-            <p>Expense: 5000</p>
-        </div>
-    )
+	const { income, expense } = useContext(HeaderContext);
+
+	return (
+		<div>
+			<h1>Current Budget</h1>
+			<p>Total: {income - expense}</p> {/* coming from context */}
+			<br />
+			<p>Income: {income}</p>
+			{/* coming from context */}
+			<p>Expense: {expense}</p>
+			{/* coming from context */}
+		</div>
+	);
 }
 
-export default Header
+export default Header;
