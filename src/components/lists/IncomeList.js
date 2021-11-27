@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ListsContext } from '../../context/context'
 
 function IncomeList() {
-    const { incomeArray } = useContext(ListsContext)
+    const { incomeArray, handleDeleteIncome } = useContext(ListsContext)
     return (
         <div>
             <ul>
@@ -12,6 +12,7 @@ function IncomeList() {
                         <li key={index}>
                             <span>{income.description}</span>
                             <span>{income.amount}</span>
+                            <button onClick={() => handleDeleteIncome(index)}>Delete</button>
                         </li>
                         )
                     })

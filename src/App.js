@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/header/Header';
 import Inputs from './components/inputs/Inputs';
 import MainList from './components/lists/MainList';
@@ -28,6 +28,19 @@ function App() {
     }
     reset()
   }
+
+  function getListInitialValue(value) {
+    return window.localStorage.getItem(value) ? JSON.parse(window.localStorage.getItem(value)) : [];
+  }
+
+  function getHeaderInitialValue(value) {
+    return window.localStorage.getItem(value) ? Number(window.localStorage.getItem(value)) : 0;
+  }
+
+  useEffect(() => {
+    setLocalStorage();
+
+  }, [income, expense, incomeArray, expenseList]);
 
   function handleDescription(value) {
     setDescription(value);
