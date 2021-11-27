@@ -46,6 +46,28 @@ function App() {
     setAmount(value)
   }
 
+  function handleDeleteExpense(index) {
+    let expenseItemToDelete = expenseList[index];
+    setExpense(expense - expenseItemToDelete.amount);
+
+    let newExpenseArray = Object.assign([], expenseList);
+
+    newExpenseArray.splice(index, 1);
+
+    setExpenseList(newExpenseArray);
+  }
+
+  function handleDeleteIncome(index) {
+    let incomeItemToDelete = incomeArray[index];
+
+    setIncome(income - incomeItemToDelete.amount);
+
+    let newIncomeArray = [...incomeArray];
+    newIncomeArray.splice(index, 1);
+
+    setIncomeArray(newIncomeArray);
+  }
+
   const inputContextValue = {
     option,
     description,
@@ -58,10 +80,15 @@ function App() {
 
   const listsContextValue = {
     incomeArray,
-    expenseList
+    expenseList,
+    handleDeleteExpense,
+    handleDeleteIncome
   };
 
-  const headerContextValue = {};
+  const headerContextValue = {
+    income,
+    expense
+  };
 
   return (
     <div className="App">
