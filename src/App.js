@@ -6,13 +6,13 @@ import { InputContext, HeaderContext, ListsContext } from './context/context';
 import './App.css';
 
 function App() {
-  const [income, setIncome] = useState(0);
-  const [expense, setExpense] = useState(0);
+  const [income, setIncome] = useState(getHeaderInitialValue('income'));
+  const [expense, setExpense] = useState(getHeaderInitialValue('expense'));
   const [option, setOption] = useState('+');
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState(0);
-  const [incomeArray, setIncomeArray] = useState([]);
-  const [expenseList, setExpenseList] = useState([]);
+  const [incomeArray, setIncomeArray] = useState(getListInitialValue('incomeArray'));
+  const [expenseList, setExpenseList] = useState(getListInitialValue('expenseList'));
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -37,6 +37,12 @@ function App() {
     return window.localStorage.getItem(value) ? Number(window.localStorage.getItem(value)) : 0;
   }
 
+  function setLocalStorage() {
+    window.localStorage.setItem('income', income);
+    window.localStorage.setItem('expense', expense);
+    window.localStorage.setItem('incomeArray', JSON.stringify(incomeArray));
+    window.localStorage.setItem('expenseList', JSON.stringify(expenseList));
+  }
   useEffect(() => {
     setLocalStorage();
 
